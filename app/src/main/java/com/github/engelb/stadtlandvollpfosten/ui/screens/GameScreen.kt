@@ -1,7 +1,5 @@
 package com.github.engelb.stadtlandvollpfosten.ui.screens
 
-import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -9,146 +7,109 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ElevatedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateListOf
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.navigation.NavController
-import kotlinx.coroutines.delay
-import androidx.compose.runtime.*
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.github.engelb.stadtlandvollpfosten.ui.components.SubcomposeRow
 import com.github.engelb.stadtlandvollpfosten.ui.theme.ContinueBg
 import com.github.engelb.stadtlandvollpfosten.ui.theme.ContinueFg
 import com.github.engelb.stadtlandvollpfosten.ui.theme.OkBg
 import com.github.engelb.stadtlandvollpfosten.ui.theme.OkFg
+import kotlinx.coroutines.delay
 
 val categories = listOf(
-    "Stadt",
-            "Land",
-            "Fluss",
-            "Tier",
-            "Pflanze",
-            "Beruf",
-            "Film",
-            "Musikband",
-            "Automarke",
-            "Süßigkeit",
-            "Getränk",
-            "Märchenfigur",
-            "Superheld",
-            "Schimpfwort",
-            "Küchengerät",
-            "Krankheit",
-            "Chemisches Element",
-            "Fiktiver Charakter",
-            "Gesellschaftsspiel",
-            "Sportart",
+    "Automarke",
+    "Automodell",
+    "Baumarktartikel",
+    "Bekleidungsmarke",
+    "Berg",
+    "Beruf",
+    "Blume",
+    "Buch",
+    "Bücherregal-Kategorie",
+    "Chemisches Element",
+    "Comicfigur",
+    "Ding, das in einen Koffer passt",
+    "Fabelwesen",
     "Farbe",
-            "Kleidungsstück",
-            "Körperteil",
-            "Instrument",
-            "Werkzeug",
-            "Pizzabelag",
-            "Geschmacksrichtung",
-            "Obst oder Gemüse",
-            "Vorname",
-            "Mädchenname",
-            "Beruf",
-            "Mordwerkzeug",
-            "Baumarktartikel",
-            "Modekette",
+    "Fiktiver Charakter",
+    "Film",
+    "Fluss",
+    "Gefühl/Emotion",
+    "Gericht (Essen)",
+    "Geschmacksrichtung",
+    "Gesellschaftsspiel",
+    "Getränk",
+    "Gott/Göttin",
+    "Haarfarbe",
+    "Historische Figur",
+    "Hobby",
+    "Insekt",
+    "Jungenname",
+    "Kartenspiel",
+    "Kleidungsstück",
+    "Körperteil",
+    "Krankheit",
+    "Küchengerät",
+    "Küchenkräuter",
+    "Kündigungsgrund",
+    "Künstler",
+    "Land",
+    "Lebensmittelmarke",
+    "Mädchenname",
+    "Märchenfigur",
+    "Märchenland",
+    "Medizinisches Instrument",
+    "Möbelstück",
+    "Modeaccessoire",
+    "Modekette",
+    "Mordwerkzeug",
+    "Musikalbum",
+    "Musikband",
+    "Musikinstrument",
+    "Obst oder Gemüse",
+    "Pflanze",
+    "Pizzabelag",
+    "Raum im Haus",
+    "Reiseziele",
+    "Schimpfwort",
+    "Schulfach",
+    "Spielzeug",
+    "Spionagegerät",
+    "Sportart",
+    "Sprichwort",
+    "Stadt",
+    "Sternbild",
+    "Superheld",
+    "Süßigkeit",
+    "Technisches Gerät",
+    "Tee-Sorte",
+    "Tier",
+    "TV-Sendung",
+    "Unternehmen",
+    "Unterwasserlebewesen",
     "Verbrechen",
-    "Kündigungsgrund"
-    /*
-    Insekt
-Schulfach
-Festival
-Literarisches Werk
-Künstler
-Buchstabe
-Gericht (Essen)
-Farbe
-Wetterphänomen
-Hobby
-Bekleidungsmarke
-Küchenkräuter
-Tanz
-Landmarke
-Mathematischer Begriff
-Philosoph
-Comicfigur
-Karte
-Unternehmen
-Zeitung
-Blume
-Stein/ Mineral
-Raum im Haus
-Reiseziele
-Medizinisches Instrument
-    Geräusch
-Modeaccessoire
-Technisches Gerät
-Zauberspruch
-Raumschiff
-Musikinstrument
-Gefühl/Emotion
-Internet-Meme
-Duft
-Videospielcharakter
-Bücherregal-Kategorie
-Youtuber
-TV-Sendung
-Sternbild
-Tanzschritt
-Soziales Netzwerk
-Möbelstück
-Zirkusakt
-Unterwasserlebewesen
-Werkzeug
-Sprichwort
-Chemische Reaktion
-Kochtechnik
-Götter/Göttinnen
-Gebäudeart
-Lebensmittelmarke
-Astronomisches Ereignis
-Wissenschaftler
-Historische Figur
-Mythischer Ort
-Haarfarbe
-Landschaftsmerkmal
-Zaubertrank-Zutat
-Stilrichtung (z.B. in Kunst, Architektur)
-Tee-Sorte
-Parlament oder Regierungsgebäude
-Karten(spiel)
-Musikalbum
-Paradiesvogel
-Berg
-Automodell
-Comic
-Spielzeug
-Robotertyp
-Märchenland
-Spionagegerät
-Kaffeesorte
-Fabelwesen
-Zutat für einen Zaubertrank
-Spielshow
- etwas, das in einen Koffer passt
- */
+    "Vorname",
+    "Werkzeug",
+    "Zauberspruch",
+    "Zaubertrank-Zutat",
+    "Zeitung",
+    "Handwerk",
+    "Kinofilm"
 )
 
 //@Preview(showSystemUi = true)
@@ -158,7 +119,8 @@ fun GameScreen(navController: NavController) {
     var timeLeft by remember { mutableStateOf(30) }
     var correctAnswers by remember { mutableStateOf(0) }
     val timerRunning = remember { mutableStateOf(true) }
-    val chosenCategories = remember { mutableStateListOf<String>() } // MutableStateList für gewählte Kategorien
+    val chosenCategories =
+        remember { mutableStateListOf<String>() } // MutableStateList für gewählte Kategorien
     var currentCategory by remember { mutableStateOf<String?>(null) } // MutableState für die aktuelle Kategorie
 
     // Funktion zum Auswählen einer zufälligen Kategorie
@@ -222,7 +184,7 @@ fun GameScreen(navController: NavController) {
                         if (timeLeft > 0 && correctAnswers < 5) {
                             pickRandomCategory()
                         }
-                }) {
+                    }) {
                     Text("Weiter", fontSize = 40.sp, color = ContinueFg)
                 }
 
@@ -247,3 +209,4 @@ fun generateRandomLetter(): Char {
     val letters = ('A'..'Z').filter { it != 'X' && it != 'Y' }
     return letters.random()
 }
+
