@@ -139,7 +139,9 @@ fun GameScreen(navController: NavController) {
                 Button(
                     colors = ButtonDefaults.buttonColors(containerColor = ContinueBg),
                     onClick = {
-                        pickRandomCategory()
+                        if (timeLeft > 0 && correctAnswers < 5) {
+                            pickRandomCategory()
+                        }
                 }) {
                     Text("Weiter", fontSize = 40.sp, color = ContinueFg)
                 }
@@ -148,7 +150,9 @@ fun GameScreen(navController: NavController) {
                     colors = ButtonDefaults.buttonColors(containerColor = OkBg),
                     onClick = {
                         correctAnswers++
-                        pickRandomCategory()
+                        if (timeLeft > 0 && correctAnswers < 5) {
+                            pickRandomCategory()
+                        }
                     }
                 ) {
                     Text("✔", fontSize = 40.sp, fontWeight = FontWeight.Bold, color = OkFg)
