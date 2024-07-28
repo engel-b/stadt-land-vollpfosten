@@ -68,7 +68,87 @@ val categories = listOf(
             "Beruf",
             "Mordwerkzeug",
             "Baumarktartikel",
-            "Modekette"
+            "Modekette",
+    "Verbrechen",
+    "Kündigungsgrund"
+    /*
+    Insekt
+Schulfach
+Festival
+Literarisches Werk
+Künstler
+Buchstabe
+Gericht (Essen)
+Farbe
+Wetterphänomen
+Hobby
+Bekleidungsmarke
+Küchenkräuter
+Tanz
+Landmarke
+Mathematischer Begriff
+Philosoph
+Comicfigur
+Karte
+Unternehmen
+Zeitung
+Blume
+Stein/ Mineral
+Raum im Haus
+Reiseziele
+Medizinisches Instrument
+    Geräusch
+Modeaccessoire
+Technisches Gerät
+Zauberspruch
+Raumschiff
+Musikinstrument
+Gefühl/Emotion
+Internet-Meme
+Duft
+Videospielcharakter
+Bücherregal-Kategorie
+Youtuber
+TV-Sendung
+Sternbild
+Tanzschritt
+Soziales Netzwerk
+Möbelstück
+Zirkusakt
+Unterwasserlebewesen
+Werkzeug
+Sprichwort
+Chemische Reaktion
+Kochtechnik
+Götter/Göttinnen
+Gebäudeart
+Lebensmittelmarke
+Astronomisches Ereignis
+Wissenschaftler
+Historische Figur
+Mythischer Ort
+Haarfarbe
+Landschaftsmerkmal
+Zaubertrank-Zutat
+Stilrichtung (z.B. in Kunst, Architektur)
+Tee-Sorte
+Parlament oder Regierungsgebäude
+Karten(spiel)
+Musikalbum
+Paradiesvogel
+Berg
+Automodell
+Comic
+Spielzeug
+Robotertyp
+Märchenland
+Spionagegerät
+Kaffeesorte
+Fabelwesen
+Zutat für einen Zaubertrank
+Spielshow
+ etwas, das in einen Koffer passt
+ */
 )
 
 //@Preview(showSystemUi = true)

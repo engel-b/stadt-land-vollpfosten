@@ -8,3 +8,5 @@ Dieses Projekt ist ein Test, um mittels Chat-GPT eine komplette native App ohne 
 * Verwalten der Kategorien
 * Konfiguration der Spielparameter (Zeit, Anzahl richtiger Antworten, ...)
 * Multi-Player-Modus
+
+<a href="https://www.flaticon.com/de/kostenlose-icons/wegweiser" title="wegweiser Icons">Wegweiser Icons erstellt von vectorspoint - Flaticon</a>
